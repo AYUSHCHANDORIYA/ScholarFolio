@@ -1,0 +1,24 @@
+{
+  "name": "digital-student-portfolio-showcase",
+  "version": "1.0.0",
+  "description": "Digital Student Portfolio and Achievement Showcase with Certificate Verification, Resume Generation, and Skill-Based Student Discovery",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "seed": "node src/db/seed.js"
+  },
+  "keywords": [
+    "student-portfolio",
+    "achievement-showcase",
+    "certificate-verification",
+    "resume-generator",
+    "skill-discovery"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.0"
+  }
+}
