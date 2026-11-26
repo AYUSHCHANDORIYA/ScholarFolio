@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScholarFolio — Digital Student Portfolio & Achievement Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="navbar no-print">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <span class="brand-icon">SF</span>
+        <span class="brand-text">ScholarFolio</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" data-route="home">Home</a>
+        <a href="#discover" data-route="discover">Discover Talent</a>
+        <a href="#verify" data-route="verify">Verify Certificate</a>
+        <a href="#dashboard" data-route="dashboard" id="navDashboard" class="hidden">My Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn btn-ghost btn-sm" title="Toggle theme" aria-label="Toggle theme">
+          🌙
+        </button>
+        <div id="authControls"></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="container main-content">
+    <div class="card">
+      <h2>Loading ScholarFolio...</h2>
+      <p class="muted" id="bootHint">Connecting to ScholarFolio server...</p>
+    </div>
+  </main>
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.getElementById('bootHint').innerHTML =
+        'Opened via <code>file://</code>. Browsers block ES modules on local files. Please open <a href="http://localhost:3000"><strong>http://localhost:3000</strong></a> instead.';
+    }
+  </script>
+
+  <footer class="footer no-print">
+    <div class="container footer-inner">
+      <div>
+        <strong>ScholarFolio</strong> — Digital Student Portfolio &amp; Achievement Showcase
+      </div>
+      <div class="footer-links">
+        <a href="#discover">Skill Discovery</a>
+        <a href="#verify">Certificate Verification</a>
+        <a href="#home">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div id="authModal" class="modal hidden no-print" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="authBackdrop"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="authModalTitle">Sign In to ScholarFolio</h2>
+        <button class="btn btn-ghost btn-sm" id="closeAuthModal" aria-label="Close">✕</button>
+      </div>
+      <div class="tabs" id="authTabs">
+        <button class="tab active" data-auth-tab="login">Sign In</button>
+        <button class="tab" data-auth-tab="register">Create Account</button>
+      </div>
+
+      <form id="loginForm" class="stack">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required placeholder="student@university.edu" />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+        <div class="demo-box">
+          <span class="muted">Quick Demo Accounts:</span>
+          <div class="demo-btns">
+            <button type="button" class="btn btn-outline btn-xs" id="demoStudentBtn">Student (Aarav)</button>
+            <button type="button" class="btn btn-outline btn-xs" id="demoEvaluatorBtn">Evaluator (Dr. Meera)</button>
+          </div>
+        </div>
+      </form>
+
+      <form id="registerForm" class="stack hidden">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" required placeholder="e.g., Ananya Rao" />
+        </div>
+        <div class="form-group">
+          <label for="regEmail">University Email</label>
+          <input type="email" id="regEmail" required placeholder="ananya@university.edu" />
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password (min 6 chars)</label>
+          <input type="password" id="regPassword" required minlength="6" placeholder="••••••••" />
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="regRole">Account Type</label>
+            <select id="regRole">
+              <option value="student">Student</option>
+              <option value="evaluator">Faculty / Evaluator</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="regGradYear">Graduation Year</label>
+            <input type="number" id="regGradYear" placeholder="2027" min="2020" max="2035" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="regUniversity">University</label>
+            <input type="text" id="regUniversity" placeholder="NIT / IIIT / University" />
+          </div>
+          <div class="form-group">
+            <label for="regDepartment">Department</label>
+            <input type="text" id="regDepartment" placeholder="Computer Science" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container no-print"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
